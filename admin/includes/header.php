@@ -1,3 +1,5 @@
+<?php ob_start(); ?><!-- Turn on output buffering: prevent issues when using redirection with header function -->
+<?php include("init.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
