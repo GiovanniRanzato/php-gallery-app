@@ -6,15 +6,15 @@
 
     public static function find_all()
     {
-        return static::find_this_query("SELECT * FROM " . static::$db_table);
+        return static::find_by_query("SELECT * FROM " . static::$db_table);
     }
     public static function find_by_id($id)
     {
-        $the_result_array = static::find_this_query("SELECT * FROM " . static::$db_table . " WHERE id= $id LIMIT 1");
+        $the_result_array = static::find_by_query("SELECT * FROM " . static::$db_table . " WHERE id= {$id} LIMIT 1");
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
     }
 
-    public static function find_this_query($sql)
+    public static function find_by_query($sql)
     {
         global $database;
         $result_set = $database->query($sql);
@@ -25,6 +25,7 @@
         }
         return $the_object_array;
     }
+
     private static function instantation($the_record)
     {
         // To avoid problems when instantiating the child class calling this method we need to use get_called_class
