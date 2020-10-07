@@ -12,7 +12,6 @@ if (isset($_POST['submit'])) {
     // Method to check database user
     $user_found = User::verify_user($username, $password);
     if ($user_found) {
-        console_log($user_found);
         $session->login($user_found);
         redirect('index.php');
     } else {

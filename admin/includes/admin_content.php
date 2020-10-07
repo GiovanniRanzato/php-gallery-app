@@ -7,39 +7,47 @@
             Dashboard
             <small>Subheading</small>
         </h1>
+        
         <?php 
+
+        
         echo "all users: <br>";
-        $users=User::find_all_users();
+ 
+        $users=User::find_all();
         foreach ($users as $user){
             echo $user->username."<br>";
         }
         $id=1;
         echo "user with id: $id <br>";
-        $single_user=User::find_user_by_id($id);
+        $single_user=User::find_by_id($id);
         echo $single_user->username;
 
-        // My SOLUTION:
-        // $user_data = array (
-        //     'username' => 'pippo',
-        //     'password' => 'paperino',
-        //     'first_name' => 'pippo',
-        //     'last_name' => 'paperino'
-        // );
-        // $new_user = User::create_user($user_data);
-        // $new_user->create();
-        $new_user = new User();
-        $new_user->username = "pluto";
-        $new_user->password = "pippo";
-        $new_user->first_name = "topolino";
-        $new_user->second_name = "pluto";
-        // $new_user->create(); comment out to avoid creation on db
-        $updated_user= User::find_user_by_id(4);
-        $updated_user->username = "minnie";
-        $updated_user->update();
 
-        $deleted_user= User::find_user_by_id(4);
-        $deleted_user->username = "minnie";
-        $deleted_user->delete();
+        // $new_user = new User();
+        // $new_user->username = "aaaa";
+        // $new_user->password = "bbbb";
+        // $new_user->first_name = "cccc";
+        // $new_user->last_name = "dddd";
+        // $new_user->create(); //comment out to avoid creation on db
+
+        //$updated_user= User::find_user_by_id(4);
+        //$updated_user->username = "minnie";
+        //$updated_user->update();
+
+        //$deleted_user= User::find_user_by_id(4);
+        //$deleted_user->username = "minnie";
+        //$deleted_user->delete();
+        // $saved_user = User::find_user_by_id(8);
+        // $saved_user->username= "edited user name";
+        // $saved_user->save();
+
+        // $saved_user = User::find_user_by_id(8);
+        // $saved_user->delete();
+
+        $created_user = User::find_by_id(3);
+        $created_user->last_name="dfsdfsdfsfsfsdf";
+        $created_user->save();
+
 
 
 
