@@ -23,12 +23,12 @@
         echo $single_user->username;
 
 
-        // $new_user = new User();
-        // $new_user->username = "aaaa";
-        // $new_user->password = "bbbb";
-        // $new_user->first_name = "cccc";
-        // $new_user->last_name = "dddd";
-        // $new_user->create(); //comment out to avoid creation on db
+        $new_user = new User();
+        $new_user->username = "2aaaa";
+        $new_user->password = "2bbbb";
+        $new_user->first_name = "2cccc";
+        $new_user->last_name = "2dddd";
+        $new_user->create(); //comment out to avoid creation on db
 
         //$updated_user= User::find_user_by_id(4);
         //$updated_user->username = "minnie";
