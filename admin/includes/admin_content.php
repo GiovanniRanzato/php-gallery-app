@@ -47,7 +47,7 @@
 
         $created_user = User::find_by_id(3);
         $created_user->last_name="dfsdfsdfsfsfsdf";
-        $created_user->save();
+        //$created_user->save();
 
 
         echo "all photos: <br>";
