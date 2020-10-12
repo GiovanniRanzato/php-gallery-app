@@ -2,8 +2,8 @@
 <?php if (!$session->is_signed_in()) {
     redirect("login.php");
 } ?>
-<?php 
-$photos =  Photo::find_all(); 
+<?php
+$photos =  Photo::find_all();
 ?>
 
 
@@ -36,15 +36,21 @@ $photos =  Photo::find_all();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($photos as $photo) : ?> 
-                               <tr>
-                               <td><?php echo $photo->id ?></td>
-                               <td><img style="width:62px; height:62px; object-fit:cover;" src=<?php echo $photo->picture_path()  ?> alt="" ></td>
-                               <td><?php echo $photo->filename ?></td>
-                               <td><?php echo $photo->title ?></td>
-                               <td><?php echo $photo->size ?></td>
-                               </tr>
-                            <?php endforeach; ?>              
+                            <?php foreach ($photos as $photo) : ?>
+                                <tr>
+                                    <td><?php echo $photo->id ?></td>
+                                    <td><img style="width:124px; height:124px; object-fit:cover;" src=<?php echo $photo->picture_path()  ?> alt="">
+                                        <div class="pictures_link">
+                                            <a href="delete_photo.php/?id=<?php echo $photo->id ?>">Delete</a>
+                                            <a href="edit_photo.php/?id=$photo->id">Edit</a>
+                                            <a href="view_photo.php/?id=$photo->id">View</a>
+                                        </div>
+                                    </td>
+                                    <td><?php echo $photo->filename ?></td>
+                                    <td><?php echo $photo->title ?></td>
+                                    <td><?php echo $photo->size ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
