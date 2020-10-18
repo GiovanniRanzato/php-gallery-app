@@ -80,7 +80,6 @@
         $sql = "INSERT INTO " . static::$db_table . " ( " . implode(",", array_keys($properties)) . " )";
         $sql .= "VALUES ('" . implode("','", array_values($properties)) . "')";
         console_log($sql);
-        console_log($properties);
 
         if ($database->query($sql)) {
             $this->id = $database->the_insert_id();
@@ -95,11 +94,12 @@
         $properties = $this->clean_properties();
         $properties_pairs = array();
         foreach ($properties as $key => $value) {
-            $properties_pairs[] = "{$key}= '{$value}' ";
+            $properties_pairs[] = "{$key} = '{$value}' ";
         }
 
-        $sql = "UPDATE " . static::$db_table . " SET " . implode(",", $properties_pairs);
+        $sql = "UPDATE " . static::$db_table . " SET " . implode(", ", $properties_pairs);
         $sql .= " WHERE id= "  . $database->escape_string($this->id);
+        console_log($sql);
         $database->query($sql);
         /* The  mysqli_affected_rows take the db connection as argument and return the numbbers of row affecte by the last query
            This is useful to update method because you can check how many updata has been done */
@@ -109,7 +109,7 @@
     {
         global $database;
         $sql = "DELETE FROM " . static::$db_table . " ";
-        $sql .= " WHERE id= "  . $database->escape_string($this->id);
+        $sql .= " WHERE id = "  . $database->escape_string($this->id);
         $sql .= " LIMIT 1";
         console_log($sql);
         $database->query($sql);
