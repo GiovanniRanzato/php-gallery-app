@@ -42,16 +42,5 @@ class User extends Db_object
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
     }
 
-    // Delete the user from database
-    // Delte the user image from the server
-    public function delete_user (){
-        if($this->delete() ){
-            $target_path = SITE_ROOT.DS.'admin'.DS.$this->image();
-            return unlink($target_path) ? true : false;
-        }else{
-            return false;
-        }
-
-    }
  
 }// End User

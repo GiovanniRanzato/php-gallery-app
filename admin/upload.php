@@ -3,16 +3,18 @@
     redirect("login.php");
 } ?>
 <?php
-$message = "";
+$message_success = "";
+$message_errors = "";
+
 if (isset($_POST['submit'])) {
     $photo = new Photo();
     $photo->title = $_POST['title'];
     console_log($_FILES);
     $photo->set_file($_FILES['file_upload']);
     if ($photo->save()) {
-        $message = "Photo uploaded successfully!";
+        $message_success = "Photo uploaded successfully!";
     } else {
-        $message = join("<br>", $photo->errors);
+        $message_errors = join("<br>", $photo->errors);
     }
 }
 ?>
@@ -53,11 +55,7 @@ if (isset($_POST['submit'])) {
                             <input class="form-control" type="submit" name="submit">
                         </div>
                     </form>
-                    <?php
-                    echo $photo->errors ? "<div class='bg-danger'>" : "<div class='bg-success'>";
-                    echo $message;
-                    echo "</div>"
-                    ?>
+                    <?php include("includes/message.php"); ?>
                 </div>
             </div>
 
