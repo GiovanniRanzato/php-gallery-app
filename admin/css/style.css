@@ -33,9 +33,17 @@
     padding: 10px;
 }
 
+.admin-photo-thumbnail, 
+.admin-user-image-thumbnail{
+    border-radius: 5px;
+    object-fit: cover;
+}
 .admin-photo-thumbnail {
     width: 124px;
     height: 124px;
-    border-radius: 5px;
-    object-fit: cover;
+
+}
+.admin-user-image-thumbnail {
+    width: 62px;
+    height: 62px;
 }

@@ -4,12 +4,15 @@
 class User extends Db_object
 {
     protected static $db_table = "users";
-    protected static $db_table_fields = array("username","password","first_name","last_name");
+    protected static $db_table_fields = array("username","image", "password","first_name","last_name");
     public $id;
     public $username;
+    public $image;
     public $password;
     public $first_name;
     public $last_name;
+    public $upload_directory = "images";
+    public $image_placeholder = "user_image_placeholder.png";
     /* TEST INSTANTIATION 
     There is no point in create this function. You can inizialize the proprety after creating an istance because are public.
     This can create also issues on security because indirectly turn instantation in a public function.
@@ -17,6 +20,10 @@ class User extends Db_object
         return self::instantation($userdata);
     }
     END TEST INSTANTATION */
+
+    public function image_path () {
+        return empty($this->image) ? $this->upload_directory.DS.$this->image_placeholder : $this->upload_directory.DS.$this->image;
+    }
 
     
     // Method to check if user exist on DB 
@@ -33,6 +40,18 @@ class User extends Db_object
 
         $the_result_array = self::find_by_query($sql);
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
+    }
+
+    // Delete the user from database
+    // Delte the user image from the server
+    public function delete_user (){
+        if($this->delete() ){
+            $target_path = SITE_ROOT.DS.'admin'.DS.$this->image();
+            return unlink($target_path) ? true : false;
+        }else{
+            return false;
+        }
+
     }
  
 }// End User
