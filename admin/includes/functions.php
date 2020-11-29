@@ -18,7 +18,11 @@ function redirect($location){
 
 function console_log( $data ){
     echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
+    if(is_string ($data) ){
+        echo 'console.log("'.  $data  .'")';
+    }else{
+        echo 'console.log('. json_encode( $data ) .')';
+    }
     echo '</script>';
   }
 
